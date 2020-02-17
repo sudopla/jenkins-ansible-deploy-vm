@@ -65,7 +65,7 @@ ansible-playbook encrypt_string password123
 
 Ansible uses the pywinrm package to communicate with Windows servers over WinRM. I am using Kerberos for authentication since this is the recommended option for a domain environment.  
  
-Once you have finished installing the [Kerberos library](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#installing-the-kerberos-library) and pywinrm[kerberos] you need to add your domain information in the real section of the Kerberos configuration file (/etc/krb5.conf)
+Once you have finished installing the [Kerberos library](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#installing-the-kerberos-library) and pywinrm[kerberos] you need to add your domain information in the realms section of the Kerberos configuration file (/etc/krb5.conf)
 
 ```
 [realms]
