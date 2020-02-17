@@ -34,7 +34,7 @@ If you already have a seed job you just need to add the code in the file [seedjo
 
 <img src="img/dsl-job-2.png" width="40%">
 
-Speficy the repository URL where the seed job file will be saved. 
+Speficy the repository URL where the seed job file will be located
 
 <img src="img/dsl-job-3.png" width="100%">
 
