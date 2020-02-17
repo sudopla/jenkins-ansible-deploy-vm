@@ -51,7 +51,7 @@ You also need to disable the option shown below. (Manage Jenkins -> Configure Gl
 
 **Ansible Playbooks**
 
-To deploy the VMs in the VMware environment I am using the [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html) ansible module. 
+To deploy the VMs in the VMware environment, I am using the [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html) ansible module. 
 
 You will have to modify the Ansibe playbooks and other files with the information required for your environment (vCenter information, TCP/IP configuration, accounts, domain name). 
 
