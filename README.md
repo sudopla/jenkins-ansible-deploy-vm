@@ -37,15 +37,15 @@ If you already have a seed job you just need to add the code in the file [seedjo
 
 Speficy the repository URL where the DLS job will be
 
-<img src="img/dsl-job-3.png" width="80%">
+<img src="img/dsl-job-3.png" width="100%">
 
 Specify the name of the seed job
 
-<img src="img/dsl-job-4.png" width="80%">
+<img src="img/dsl-job-4.png" width="100%">
 
 You also need to disable the option shown below 
 
-<img src="img/dsl-job-5.png" width="80%">
+<img src="img/dsl-job-5.png" width="60%">
 
 **Modify Ansible Playbooks**
 
