@@ -31,21 +31,21 @@ Create Seed Job
 
 If you already have a seed job you just need to add the code in the file [seedjob](seedjob) to your existing job if not you can create a new DSK job.
 
-<img src="img/dsl-job-01.png" width="60%">
+<img src="img/dsl-job-01.png" width="40%">
 
-<img src="img/dsl-job-2.png" width="60%">
+<img src="img/dsl-job-2.png" width="40%">
 
 Speficy the repository URL where the DLS job will be
 
-<img src="img/dsl-job-3.png" width="60%">
+<img src="img/dsl-job-3.png" width="40%">
 
 Specify the name of the seed job
 
-<img src="img/dsl-job-4.png" width="60%">
+<img src="img/dsl-job-4.png" width="40%">
 
 You also need to disable the option shown below 
 
-<img src="img/dsl-job-5.png" width="60%">
+<img src="img/dsl-job-5.png" width="40%">
 
 **Modify Ansible Playbooks**
 
