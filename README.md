@@ -8,8 +8,8 @@ This script allows you deploy and configure a virtual machine automatically in y
 **Requirements**
 
 * Have a Windows template ready
-* [Install pyVmomi](https://github.com/vmware/pyvmomi) in Jenkins server
-* [Install Kerbereos Library](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#installing-the-kerberos-library)
+* Install [pyVmomi](https://github.com/vmware/pyvmomi) in Jenkins server
+* Install [Kerbereos Library](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#installing-the-kerberos-library)
 * [Configure Kerberos](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#configuring-host-kerberos)
 * Modify Ansible playbooks for your environment
 
