@@ -50,7 +50,37 @@ You also need to disable the option shown below. (Manage Jenkins -> Configure Gl
 
 To deploy the VMs in the VMware environment I am using the [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html) ansible module. 
 
-You will 
+You will have to modify the Ansibe playbooks and other files with the information required for your environment (vCenter information, TCP/IP configuration, accounts, domain name). 
 
+You need to encyrpt the passwords in the playbooks using Ansible Vault. 
+```
+ansible-playbook encrypt_string password123
+```
 
 **Configure Kerberos**
+
+Ansible uses the pywinrm package to communicate with Windows servers over WinRM. I am using Kerberos for authentication since this is the recommended option for a domain environment.  
+ 
+Once you have finished installing the [Kerberos library](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#installing-the-kerberos-library) and pywinrm[kerberos] you need to add your domain information in the real section of the Kerberos configuration file (/etc/krb5.conf)
+
+```
+[realms]
+CONTOSO.CORP = {
+                kdc = domain_controller_1_IP
+                kdc = domain_controller_2_IP
+                admin_server = domain_controller_1_IP
+        }
+
+[domain_realm]
+.contoso.corp = CONTOSO.CORP
+```
+
+The Ansible host vars configured for Kerberos authentication are shown below
+```
+ansible_connection: winrm
+ansible_winrm_transport: kerberos
+ansible_port: 5985
+ansible_user: admin-account@CONTOSO.CORP
+ansible_password: password
+```
+
