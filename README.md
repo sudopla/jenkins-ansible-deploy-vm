@@ -25,9 +25,11 @@ This script allows you deploy and configure a virtual machine automatically in y
 The [Job DSL](https://plugins.jenkins.io/job-dsl/) plugin allows you to define Jenkins jobs as code. You will have to install this plugin and then configure the seed job. The [DSL job](seedjob) defined in this project will create the spin_up_vm job which is the one the user will run to deploy new virtual machines.   
 
 Install Job DSL plugin
+
 ![dsl-job](img/dsl-job-1.png)
 
 If you already have a seed job you just need to add the code in the file [seedjob](seedjob) to your existing job if not you need to create a new DSL job.
+
 <img src="img/dsl-job-01.png" width="100%">
 
 <img src="img/dsl-job-2.png" width="60%">
