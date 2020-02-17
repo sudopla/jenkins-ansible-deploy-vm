@@ -5,12 +5,14 @@ This script allows you deploy and configure a virtual machine automatically in y
 
 <img src="img/build.png" width="80%">
 
+
 **Jenkins Job Steps**
 
 1. Download job's files from repository
 2. Spin up virtual machine and join the VM to the Windows domain
 3. Configure Window OS in the VM (expand drives, add users to admin and RDP groups, configure local administrator password)
 4. Move VM to proper OU in AD
+
 
 **Requirements**
 
@@ -19,6 +21,7 @@ This script allows you deploy and configure a virtual machine automatically in y
 * Install [Kerbereos Library](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#installing-the-kerberos-library) in Jenkins server
 * [Configure Kerberos](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#configuring-host-kerberos)
 * Modify Ansible playbooks for your environment
+
 
 **Create Jenkins DLS Job (Seed Job)**
 
@@ -56,6 +59,7 @@ You need to encyrpt the passwords in the playbooks using Ansible Vault.
 ```
 ansible-playbook encrypt_string password123
 ```
+
 
 **Configure Kerberos**
 
