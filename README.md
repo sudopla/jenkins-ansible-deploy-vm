@@ -30,7 +30,7 @@ Install Job DSL plugin
 
 If you already have a seed job you just need to add the code in the file [seedjob](seedjob) to your existing job if not you need to create a new DSL job.
 
-<img src="img/dsl-job-01.png" width="60%">
+<img src="img/dsl-job-01.png" width="80%">
 
 <img src="img/dsl-job-2.png" width="40%">
 
