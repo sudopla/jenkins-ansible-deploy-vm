@@ -25,13 +25,13 @@ This script allows you deploy and configure a virtual machine automatically in y
 The [Job DSL](https://plugins.jenkins.io/job-dsl/) plugin allows you to define jobs as code. You will have to install this plugin and then configure the seed job.
 
 Install Job DSL plugin
-<img src="img/dsl-job-1.png" width="100%">
+<img src="img/dsl-job-1.png" width="40%">
 
 Create Seed Job
 
 If you already have a seed job you just need to add the code in the file [seedjob](seedjob) to your existing job if not you can create a new DSK job.
 
-<img src="img/dsl-job-01.png" width="10%">
+<img src="img/dsl-job-01.png" width="40%">
 
 <img src="img/dsl-job-2.png" width="40%">
 
