@@ -1,7 +1,7 @@
 Spin up and configure Windows virtual machines in VMware environmnet
 ------------------------
 
-This script allows you deploy and configure a virtual machine automatically in your VMware environment. The user would run the job in Jenkins as shown the picture below. The Jenkins job then executes Ansible playbooks to perform the different configuration tasks. 
+This script allows you deploy and configure a virtual machine automatically in your VMware environment. The user would run the Jenkins Job as shown in the picture below. The Jenkins job executes Ansible playbooks to perform the different configuration tasks. 
 
 <img src="img/build.png" width="80%">
 
