@@ -3,7 +3,7 @@ Spin up and configure Windows virtual machines in VMware environmnet
 
 This script allows you deploy and configure a virtual machine automatically in your VMware environment. 
 
-<img src="img/build.png" width="60%">
+<img src="img/build.png" width="80%">
 
 **Requirements**
 
@@ -27,26 +27,25 @@ The [Job DSL](https://plugins.jenkins.io/job-dsl/) plugin allows you to define j
 Install Job DSL plugin
 <img src="img/dsl-job-1.png" width="80%">
 
-Create Seed Job
-
-If you already have a seed job you just need to add the code in the file [seedjob](seedjob) to your existing job if not you can create a new DSK job.
-
+If you already have a seed job you just need to add the code in the file [seedjob](seedjob) to your existing job if not you need to create a new DSL job.
 <img src="img/dsl-job-01.png" width="80%">
 
 <img src="img/dsl-job-2.png" width="40%">
 
-Speficy the repository URL where the DLS job will be
+Speficy the repository URL where the seed job file will be saved
 
 <img src="img/dsl-job-3.png" width="100%">
 
-Specify the name of the seed job
+Specify the name of the seed job file
 
 <img src="img/dsl-job-4.png" width="100%">
 
-You also need to disable the option shown below 
+You also need to disable the option shown below. (Manage Jenkins -> Configure Global Security) 
 
 <img src="img/dsl-job-5.png" width="60%">
 
 **Modify Ansible Playbooks**
+
+
 
 **Configure Kerberos**
