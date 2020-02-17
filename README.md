@@ -44,7 +44,7 @@ Specify the name of the seed job file
 
 You also need to disable the option shown below. (Manage Jenkins -> Configure Global Security) 
 
-<img src="img/dsl-job-5.png" width="60%">
+<img src="img/dsl-job-5.png" width="40%">
 
 **Ansible Playbooks**
 
