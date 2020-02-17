@@ -31,7 +31,7 @@ Create Seed Job
 
 If you already have a seed job you just need to add the code in the file [seedjob](seedjob) to your existing job if not you can create a new DSK job.
 
-<img src="img/dsl-job-01.png" width="40%">
+<img src="img/dsl-job-01.png" width="10%">
 
 <img src="img/dsl-job-2.png" width="40%">
 
