@@ -3,7 +3,7 @@ Spin up and configure Windows virtual machines in VMware environmnet
 
 This script allows you deploy and configure a virtual machine automatically in your VMware environment. 
 
-<img src="img/build.png" width="100%">
+<img src="img/build.png" width="60%">
 
 **Requirements**
 
@@ -31,18 +31,21 @@ Create Seed Job
 
 If you already have a seed job you just need to add the code in the file [seedjob](seedjob) to your existing job if not you can create a new DSK job.
 
-<img src="img/dsl-job-01.png" width="100%">
+<img src="img/dsl-job-01.png" width="60%">
 
-<img src="img/dsl-job-2.png" width="100%">
+<img src="img/dsl-job-2.png" width="60%">
 
 Speficy the repository URL where the DLS job will be
-<img src="img/dsl-job-3.png" width="100%">
+
+<img src="img/dsl-job-3.png" width="60%">
 
 Specify the name of the seed job
-<img src="img/dsl-job-4.png" width="100%">
+
+<img src="img/dsl-job-4.png" width="60%">
 
 You also need to disable the option shown below 
-<img src="img/dsl-job-5.png" width="100%">
+
+<img src="img/dsl-job-5.png" width="60%">
 
 **Modify Ansible Playbooks**
 
