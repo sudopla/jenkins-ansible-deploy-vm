@@ -1,0 +1,12 @@
+---
+- name: Update Ansible host file
+  hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: Update inventory file
+    template: 
+      src: vm_host_template.j2
+      dest: vm_host.yml
+      owner: jenkins
+      mode: '0644' 
+    delegate_to: localhost

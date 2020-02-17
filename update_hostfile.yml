@@ -1,0 +1,8 @@
+---
+- name: Update host file with new VM becuase DNS records take some time to be updated
+  hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: Update host file with VM name
+    shell: echo '{{vm_ip}} {{vm_name}}.contoso.corp' >> /etc/hosts 
+    delegate_to: localhost

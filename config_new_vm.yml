@@ -1,0 +1,67 @@
+---
+- name: Configure new VMs
+  hosts: spun_up_vm
+  vars:
+    ansible_connection: winrm
+    ansible_winrm_transport: kerberos
+    ansible_port: 5985
+    ansible_user: admin-account@CONTOSO.CORP
+    ansible_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          30386533333333333333333333333333333333333333333333333333333333333333333333333633
+          66666666666666666666666666666666666666666666666666666666666666666666666666666463
+          33633563383022222222222222222222222222222222222222222222222222222222222222222220
+          65555555555555555555555555555555555555555555555555555555555555555555555538613266
+          3233
+  tasks:
+  - name: Get disk facts
+    win_disk_facts:
+  - name: Add a domain user to local administrator group
+    win_group_membership:
+      name: Administrators
+      members:
+        - CONTOSO.CORP\{{ ad_group_name }}
+      state: present
+    when: ad_group_name|length != 0
+  - name: Add users to remote desktop group
+    win_group_membership:
+      name: Remote Desktop Users
+      members:
+        - CONTOSO.CORP\{{ rdp_group_name }}
+      state: present
+    when: rdp_group_name|length !=0
+  - name: Resize C partition to it's maximum size
+    win_partition:
+      partition_size: -1
+      partition_number: 2
+      disk_number: 0
+  - name: initialize new disk
+    win_shell: "Initialize-Disk -Number 1"
+    when: ansible_facts.disks|length >= 2
+  - name: Create new partition on a new drive added to the VM
+    win_partition:
+      drive_letter: E
+      partition_size: -1
+      disk_number: 1
+    when: ansible_facts.disks|length >= 2 
+  - name: Full format the newly created partition as NTFS and label it
+    win_format:
+      drive_letter: E
+      file_system: NTFS
+      new_label: Volume1
+    when: ansible_facts.disks|length >= 2
+  - name: initialize new disk
+    win_shell: "Initialize-Disk -Number 2"
+    when: ansible_facts.disks|length >= 3
+  - name: Create new partition on a new drive added to the VM
+    win_partition:
+      drive_letter: F
+      partition_size: -1
+      disk_number: 2
+    when: ansible_facts.disks|length >= 3
+  - name: Full format the newly created partition as NTFS and label it
+    win_format:
+      drive_letter: F
+      file_system: NTFS
+      new_label: Volume2
+    when: ansible_facts.disks|length >= 3

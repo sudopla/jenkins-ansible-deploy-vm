@@ -1,0 +1,7 @@
+vm_disks:
+  - size_gb: "{{ disk_size_gb}}"
+    type: thin
+    datastore: datacenter-1
+  - size_gb: "{{ disk2_size_gb}}"
+    type: thin
+    datastore: datacenter-1

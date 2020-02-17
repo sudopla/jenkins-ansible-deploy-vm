@@ -1,0 +1,4 @@
+---
+spun_up_vm:
+  hosts:
+    TEST02.contoso.corp:

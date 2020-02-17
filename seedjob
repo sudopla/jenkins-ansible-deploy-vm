@@ -1,0 +1,97 @@
+job('spin_up_vm'){
+ 
+  description('Deploy Windows VM in VMware infrastructure')
+  
+  parameters {
+    	stringParam('VM_Name', '', '')
+    	stringParam('IP_Address', '', '')
+    	stringParam('Memory_MB', '4096', '')
+    	stringParam('Number_CPUs', '2', '')
+    	stringParam('VM_Notes', '', '')
+    	stringParam('Disk_Size_GB', '60', '')
+    	stringParam('Disk_2_Size_GB', '', '(Optional')
+    	stringParam('Disk_3_Size_GB', '', '(Optional)')
+    	stringParam('ADMIN_GROUP_USER', '', '(Optional)')
+    	stringParam('RDP_GROUP_USER', '', '(Optional)')
+    }
+  
+   scm {
+        git {
+            remote {
+              name('origin')
+              url('https://git-codecommit.us-east-1.amazonaws.com/v1/repos/jenkins-spinup-vm')
+              credentials('CodeCommit_Credentials')
+            }
+            branch('master')
+        }
+    }
+
+   steps {
+
+       wrappers {
+            colorizeOutput(colorMap = 'xterm')
+       }
+       
+       //Deploy virtual machine
+       ansiblePlaybook('spin_up_one_vm_vcenter.yml') {
+        ansibleName('ansible')
+        colorizedOutput(true)
+        vaultCredentialsId('AnsibleVaultPassword')
+        extraVars {
+            extraVar("vm_name", '${VM_Name}', false)
+            extraVar("vm_ip_address", '${IP_Address}', false)
+            extraVar("vm_memory_mb", '${Memory_MB}', false)
+            extraVar("vm_num_cpus", '${Number_CPUs}', false)
+            extraVar("notes", '${VM_Notes}', false)
+            extraVar("disk_size_gb", '${Disk_Size_GB}', false)
+            extraVar("disk2_size_gb", '${Disk_2_Size_GB}', false)
+            extraVar("disk3_size_gb", '${Disk_3_Size_GB}', false)
+        }
+       }  
+	
+       //Update ansible inventory with the VM name. This file will be used later to finish configuring the server
+       ansiblePlaybook('update_inventory.yml') {
+        ansibleName('ansible')
+        colorizedOutput(true)
+        extraVars {
+            extraVar("vm_name", '${VM_Name}', false)
+        }
+       }
+
+       //Update host file to resolve VM name
+       ansiblePlaybook('update_hostfile.yml') {
+        ansibleName('ansible')
+        colorizedOutput(true)
+        extraVars {
+            extraVar("vm_name", '${VM_Name}', false)
+            extraVar("vm_ip", '${IP_Address}', false)
+        }
+       }  
+   
+       //Configure Windows OS
+       ansiblePlaybook('config_new_vm.yml') {
+        inventoryPath('vm_host.yml')
+        ansibleName('ansible')
+        colorizedOutput(true)
+        vaultCredentialsId('AnsibleVaultPassword')
+        extraVars {
+            extraVar("ad_group_name", '${ADMIN_GROUP_USER}', false)
+            extraVar("rdp_group_name", '${RDP_GROUP_USER}', false)
+        }
+       }
+       
+       //Move VM AD object to correct OU
+       ansiblePlaybook('move_ad_object.yml') {
+        inventoryPath('ad_server.yml')
+        ansibleName('ansible')
+        colorizedOutput(true)
+        vaultCredentialsId('AnsibleVaultPassword')
+        extraVars {
+            extraVar("vm_name", '${VM_Name}', false)
+        }
+       }
+         
+
+    }
+  
+}

@@ -1,0 +1,15 @@
+---
+- name: Testing Ansible with Windows Servers
+  hosts: ad_server
+  gather_facts: no
+  tasks:
+  - name: Move Computer Object to different OU
+    win_shell: |
+      $password = "{{ ansible_password }}" | ConvertTo-SecureString -AsPlainText -Force
+      $username = "contoso.corp\admin-account"
+      $machine_name = "{{ vm_name }}"
+      $credential = New-Object System.Management.Automation.PSCredential($username, $password)
+      Move-ADObject -Identity "CN=$machine_name,CN=Computers,DC=contoso,DC=corp" -TargetPath "OU=Servers,DC=contoso,DC=corp" -Server "10.0.0.10" -Credential $credential
+      Add-ADGroupMember -Identity "CN=WSUS_Servers,OU=Administration,DC=contoso,DC=corp" -Members "CN=$machine_name,OU=Servers,DC=contoso,DC=corp" -Server "10.0.0.10" -Credential $credential
+    no_log: True
+    
