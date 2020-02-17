@@ -1,17 +1,9 @@
 Spin up and configure Windows virtual machines in VMware environmnet
 ------------------------
 
-This script allows you deploy and configure a virtual machine automatically in your VMware environment. 
+This script allows you deploy and configure a virtual machine automatically in your VMware environment. The user would run the job in Jenkins as shown the picture below. The Jenkins job then executes Ansible playbooks to perform the different configuration tasks. 
 
 <img src="img/build.png" width="80%">
-
-**Requirements**
-
-* Have a Windows template ready
-* Install [pyVmomi](https://github.com/vmware/pyvmomi) in Jenkins server
-* Install [Kerbereos Library](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#installing-the-kerberos-library)
-* [Configure Kerberos](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#configuring-host-kerberos)
-* Modify Ansible playbooks for your environment
 
 **Jenkins Job Steps**
 
@@ -20,9 +12,17 @@ This script allows you deploy and configure a virtual machine automatically in y
 3. Configure Window OS in the VM (expand drives, add users to admin and RDP groups, configure local administrator password)
 4. Move VM to proper OU in AD
 
-**Create Jenkins Seed Job**
+**Requirements**
 
-The [Job DSL](https://plugins.jenkins.io/job-dsl/) plugin allows you to define jobs as code. You will have to install this plugin and then configure the seed job.
+* Have a Windows template ready
+* Install [pyVmomi](https://github.com/vmware/pyvmomi) in Jenkins server
+* Install [Kerbereos Library](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#installing-the-kerberos-library) in Jenkins server
+* [Configure Kerberos](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#configuring-host-kerberos)
+* Modify Ansible playbooks for your environment
+
+**Create Jenkins DLS Job (Seed Job)**
+
+The [Job DSL](https://plugins.jenkins.io/job-dsl/) plugin allows you to define Jenkins jobs as code. You will have to install this plugin and then configure the seed job. The [DSL job](seedjob) defined in this project will create the spin_up_vm job which is the one the user will run to deploy new virtual machines.   
 
 Install Job DSL plugin
 <img src="img/dsl-job-1.png" width="80%">
@@ -32,7 +32,7 @@ If you already have a seed job you just need to add the code in the file [seedjo
 
 <img src="img/dsl-job-2.png" width="40%">
 
-Speficy the repository URL where the seed job file will be saved
+Speficy the repository URL where the seed job file will be saved. 
 
 <img src="img/dsl-job-3.png" width="100%">
 
@@ -44,8 +44,11 @@ You also need to disable the option shown below. (Manage Jenkins -> Configure Gl
 
 <img src="img/dsl-job-5.png" width="60%">
 
-**Modify Ansible Playbooks**
+**Ansible Playbooks**
 
+To deploy the VMs in the VMware environment I am using the [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html) ansible module. 
+
+You will 
 
 
 **Configure Kerberos**
