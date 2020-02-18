@@ -1,7 +1,7 @@
 Spin up and configure Windows virtual machines in VMware environmnet
 ------------------------
 
-This script allows you deploy and configure a virtual machine automatically in your VMware environment. The user would run the Jenkins Job as shown in the picture below. Then the Jenkins job executes Ansible playbooks to perform the different configuration tasks. 
+This script allows you to deploy and configure a virtual machine automatically in your VMware environment. The user would run the Jenkins job as shown in the picture below. Then, the Jenkins job will execute Ansible playbooks to perform the different configuration tasks. 
 
 <img src="img/build.png" width="80%">
 
@@ -25,7 +25,7 @@ This script allows you deploy and configure a virtual machine automatically in y
 
 **Create Jenkins DLS Job (Seed Job)**
 
-The [Job DSL](https://plugins.jenkins.io/job-dsl/) plugin allows you to define Jenkins jobs as code. You will have to install this plugin and then configure the seed job. The [DSL job](seedjob) defined in this project will create the spin_up_vm job which is the one the user will run to deploy new virtual machines.   
+The [Job DSL](https://plugins.jenkins.io/job-dsl/) plugin allows you to define Jenkins jobs as code. You will have to install this plugin and then configure the seed job. The [DSL job](seedjob) defined in this project will create the spin_up_vm job, which is the one the user will run to deploy new virtual machines.   
 
 Install Job DSL plugin
 
@@ -37,7 +37,7 @@ If you already have a seed job you just need to add the code in the file [seedjo
 
 <img src="img/dsl-job-2.png" width="40%">
 
-Speficy the repository URL where the seed job file will be located
+Specify the repository URL where the seed job file will be located
 
 <img src="img/dsl-job-3.png" width="100%">
 
@@ -53,7 +53,7 @@ You also need to disable the option shown below. (Manage Jenkins -> Configure Gl
 
 To deploy the VMs in the VMware environment, I am using the [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html) Ansible module. 
 
-You will have to modify the Ansibe playbooks and other files with the required information for your environment (vCenter information, TCP/IP configuration, accounts, domain name). 
+You will have to modify the Ansibe playbooks and other files with the required information for your environment (vCenter information, TCP/IP configuration, accounts and domain name). 
 
 You need to encyrpt the passwords in the playbooks using Ansible Vault. 
 ```
@@ -65,7 +65,7 @@ ansible-playbook encrypt_string password123
 
 Ansible uses the pywinrm package to communicate with Windows servers over WinRM. I am using Kerberos for authentication since this is the recommended option for a domain environment.  
  
-Once you have finished installing the [Kerberos library](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#installing-the-kerberos-library) and pywinrm[kerberos] you need to add your domain information in the realms section of the Kerberos configuration file (/etc/krb5.conf)
+Once you have finished installing the [Kerberos library](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#installing-the-kerberos-library) and pywinrm[kerberos], you need to add your domain information in the realms section of the Kerberos configuration file (/etc/krb5.conf).
 
 ```
 [realms]
